@@ -9,7 +9,7 @@ type ParentNode = RootNode | CallExpressionNode | undefined;
 type MethodFn = (node: RootNode | ChildNode, parent: ParentNode) => void;
 interface VisitorOption {
   enter: MethodFn;
-  exit: MethodFn;
+  exit?: MethodFn;
 }
 export interface Visitor {
   Program?: VisitorOption;
@@ -45,7 +45,7 @@ export function traverser(rootNode: RootNode, visitor: Visitor) {
     }
 
     // exit
-    if (visitorObj) {
+    if (visitorObj && visitorObj.exit) {
       visitorObj.exit(node, parent);
     }
   }
