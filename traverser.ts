@@ -34,7 +34,6 @@ export function traverser(rootNode: RootNode, visitor: Visitor) {
     }
     switch (node.type) {
       case NodeTypes.NumberLiteral:
-        console.log("ss");
         break;
       case NodeTypes.CallExpression:
         traverseArray(node.params, node);

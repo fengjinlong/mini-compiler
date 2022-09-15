@@ -48,3 +48,13 @@ export function createCallExpressionNode(name: string): CallExpressionNode {
     params: [],
   };
 }
+export function createStringLiteralNode(value): StringLiteralNode {
+  return {
+    type: NodeTypes.StringLiteral,
+    value,
+  };
+}
+export interface StringLiteralNode extends Node {
+  value: string;
+  type: NodeTypes.StringLiteral;
+}

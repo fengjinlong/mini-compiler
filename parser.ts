@@ -5,7 +5,7 @@ import {
 } from "./ast";
 import { Token, TokenTypes } from "./tokenizer";
 
-export function parse(tokens: Token[]) {
+export function parser(tokens: Token[]) {
   let current = 0;
   const rootNode = createRootNode();
 
@@ -23,10 +23,8 @@ export function parse(tokens: Token[]) {
       token = tokens[++current];
       // 不是 ) 就继续  右括号结束
       while (!(token.type === TokenTypes.Paren && token.value === ")")) {
-        if (token.type === TokenTypes.Number) {
-          node.params.push(walk());
-          token = tokens[current];
-        }
+        node.params.push(walk());
+        token = tokens[current];
       }
       current++;
       return node;

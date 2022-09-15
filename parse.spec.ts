@@ -1,8 +1,8 @@
 import { describe, expect, test } from "vitest";
 import { NodeTypes } from "./ast";
-import { parse } from "./parse";
+import { parser } from "./parser";
 import { tokenizer, TokenTypes } from "./tokenizer";
-test("parse", () => {
+test("parser", () => {
   const code = `(add 2 (subtract 4 2))`;
 
   const tokens = [
@@ -53,7 +53,7 @@ test("number", () => {
     type: NodeTypes.Program,
     body: [{ type: NodeTypes.NumberLiteral, value: "2" }],
   };
-  expect(parse(tokens)).toEqual(ast);
+  expect(parser(tokens)).toEqual(ast);
 });
 
 test("callExpression", () => {
@@ -84,7 +84,7 @@ test("callExpression", () => {
       },
     ],
   };
-  expect(parse(tokens)).toEqual(ast);
+  expect(parser(tokens)).toEqual(ast);
 });
 
 test("two callExpression", () => {
@@ -133,5 +133,5 @@ test("two callExpression", () => {
       },
     ],
   };
-  expect(parse(tokens)).toEqual(ast);
+  expect(parser(tokens)).toEqual(ast);
 });
